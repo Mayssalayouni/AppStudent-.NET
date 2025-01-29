@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "Liste des Utilisateurs";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Utilisateurs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+
+        }
+        /* Navbar */
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin-bottom: 20px;
+            width: 100%; /* Agrandissement des tableaux */
+        }
+
+        .btn-action {
+            margin-right: 5px;
+        }
+
+        .container {
+            max-width: 95%; /* Étendre la largeur du contenu */
+        }
+
+        .navbar .ml-auto .btn {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/Admin/Dashboard">AppStudent ♥</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Utilisateurs">Utilisateurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Classes">Classes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Paramètres">Paramètres</a>
+                </li>
+            </ul>
+            <div class="ml-auto">
+                <a href="@Url.Action("Register", "Etudiant")" class="btn btn-success btn-sm">
+                    <i class="fas fa-user-plus"></i> Ajouter Étudiant
+                </a>
+                <a href="@Url.Action("CreateENS", "Etudiant")" class="btn btn-primary btn-sm">
+                    <i class="fas fa-user-plus"></i> Ajouter Enseignant
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Liste des Utilisateurs</h2>
+
+
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        <!-- Liste des étudiants -->
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Numéro Inscription</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var etudiant in ViewBag.Etudiants)
+                {
+                    <tr>
+                        <td>@etudiant.CodeEtudiant</td>
+                        <td>@etudiant.Nom</td>
+                        <td>@etudiant.Prenom</td>
+                        <td>@etudiant.NumInscription</td>
+                        <td>@etudiant.Tel</td>
+                        <td>
+                            <!-- Bouton Modifier -->
+                            <a href="@Url.Action("ModifierEtudiant", "Etudiant", new { id = etudiant.CodeEtudiant })"
+                               class="btn btn-warning btn-sm btn-action">
+                                <i class="fas fa-edit"></i> Modifier
+                            </a>
+                            <a href="@Url.Action("DeleteETudiant", "Etudiant", new { id = etudiant.CodeEtudiant })"
+                               class="btn btn-danger btn-sm btn-action">
+                                <i class="fas fa-trash-alt"></i> Supprimer
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Liste des enseignants -->
+        <h3>Liste des Enseignants</h3>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enseignant in ViewBag.Enseignants)
+                {
+                    <tr>
+                        <td>@enseignant.CodeEnseignant</td>
+                        <td>@enseignant.Nom</td>
+                        <td>@enseignant.Prenom</td>
+                        <td>@enseignant.Tel</td>
+                        <td>@enseignant.Mail</td>
+                        <td>
+                            <a href="/Enseignant/Edit/@enseignant.CodeEnseignant" class="btn btn-primary btn-sm btn-action">
+                                <i class="fas fa-edit"></i> Modifier
+                            </a>
+                            <a href="@Url.Action("DeleteE", "Etudiant", new { id = enseignant.CodeEnseignant })"
+                               class="btn btn-danger btn-sm btn-action">
+                                <i class="fas fa-trash-alt"></i> Supprimer
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

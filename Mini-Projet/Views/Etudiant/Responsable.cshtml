@@ -1,0 +1,184 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Container principal */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container-admin {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Barre latérale */
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            height: 100%;
+            position: fixed;
+        }
+
+            .sidebar h2 {
+                color: #fff;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                margin: 15px 0;
+                font-size: 1.1rem;
+            }
+
+                .sidebar a:hover {
+                    background-color: #007bff;
+                    padding-left: 10px;
+                }
+
+        /* Contenu principal */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+
+            .main-content h2 {
+                color: #007bff;
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+        .widget {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+            .widget h3 {
+                color: #007bff;
+            }
+
+            .widget p {
+                font-size: 1.1rem;
+            }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Navbar */
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AppStudent ♥ </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Responsable", "Etudiant")>Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gestion des absences</a>
+                </li>
+            </ul>
+            <!-- Section Admin avec icône paramètres -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cogs"></i> <!-- Icône paramètres -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-admin">
+        <!-- Barre latérale -->
+        <div class="sidebar">
+            <a href="@Url.Action("ListeUtilisateurs", "Etudiant")">Gestion des absences</a>
+            <a href="#">Paramètres</a>
+            <a href="@Url.Action("Index", "Etudiant")">Déconnexion</a>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <h2>Bienvenue, Responsable!</h2>
+
+            <!-- Row de widgets -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>Absence</h3>
+                        <a href="@Url.Action("MarquerAbsences", "Etudiant")">Ajouter absence.</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>Recherche</h3>
+                        <a href="@Url.Action("ListeAbsences", "Etudiant")">Cheche absence .</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>Matiére</h3>
+                        <a href="@Url.Action("CreateMat", "Etudiant")">Ajouter  matiére .</a>
+                    </div>
+                </div>
+                 <div class="col-md-4"> 
+                     <div class="widget">
+                        <h3>Matiéres</h3>
+                        <a href="@Url.Action("ListeMatieres", "Etudiant")">Liste des matiéres .</a>
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

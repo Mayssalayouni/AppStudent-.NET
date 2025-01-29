@@ -1,0 +1,39 @@
+﻿<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    @model IEnumerable<Etudiant>
+
+        <h2>Liste des étudiants</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date de naissance</th>
+                    <th>Classe</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var etudiant in Model)
+                {
+                <tr>
+                    <td>@etudiant.Nom</td>
+                    <td>@etudiant.Prenom</td>
+                    <td>@etudiant.DateNaissance.ToShortDateString()</td>
+                    <td>@etudiant.CodeClasse</td>
+                    <td>
+                        <a href="@Url.Action(" Edit", new { codeEtudiant=etudiant.CodeEtudiant })">Edit</a> |
+                        <a href="@Url.Action(" Delete", new { codeEtudiant=etudiant.CodeEtudiant })">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+</body>
+</html>-->

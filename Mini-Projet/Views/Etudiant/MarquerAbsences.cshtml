@@ -1,0 +1,293 @@
+﻿@{
+    ViewData["Title"] = "Liste etudiants";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            align-items:center;
+            align-content: center;
+            /* background-color: #f4f7fc; */
+            background-image: url("https://www.campusfrance.org/sites/default/files/Fotolia_182044577_Subscription_Monthly_M_0.jpg");
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+
+        .container {
+            margin-top: 30px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            height:200px;
+        }
+        .container1 {
+            width:99%;
+            padding : 10px;
+            margin-top: 30px;
+            padding-top: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            align-items: center;
+            align-content: center ;
+        }
+
+        .container h2 {
+                font-weight: bold;
+                color: #0056b3;
+                text-align: center;
+            } 
+        .container1 h2 {
+                font-weight: bold;
+                color: #0056b3;
+                text-align: center;
+            }
+
+        .form-group label {
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .form-group input, form-control {
+            background-color: rgba(#0056b3, #0056b3, #0056b3, 0.8);
+            border-radius: 30px;
+            height: 45px;
+        }
+
+
+        /* Table générale */
+        .table {
+            border-collapse: collapse;
+            width: 95%;
+            font-family: Arial, sans-serif;
+        }
+
+            /* Entête de la table */
+            .table thead th {
+                font-weight: bold;
+                background-color: #007bff; /* Bleu clair */
+                color: white;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            /* Lignes de la table */
+            .table tbody tr:nth-child(even) {
+                background-color: #f2f9ff; /* Bleu très clair */
+            }
+
+            .table tbody tr:nth-child(odd) {
+                background-color: white;
+            }
+
+            .table tbody td {
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            /* Effet au survol */
+            .table tbody tr:hover {
+                background-color: #d6eaff; /* Bleu un peu plus foncé */
+            }
+
+        /* Case à cocher */
+        input[type="checkbox"] {
+            transform: scale(1.2); /* Agrandir légèrement */
+            margin: 0 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            margin-bottom:10px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .alert-warning {
+            margin-top: 20px;
+        }
+
+        /* Styles pour le menu de navigation */
+        .navbar {
+            margin-bottom: 30px;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        /* Bouton pour Enseignant */
+        .btn-enseignant {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+        }
+
+            .btn-enseignant:hover {
+                background-color: #e0a800;
+                transform: translateY(-3px); /* Effet de levée */
+            }
+</style>
+
+</head>
+<body>
+
+    <!-- Menu de navigation en haut -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AppStudent ♥ </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("MarquerAbsences", "Etudiant")">Marquer Absences</a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ListeAbsences", "Etudiant")">Chercher Absence</a>
+                </li>
+            </ul>
+            <!-- Section Admin avec icône paramètres -->
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Deconnexion</a> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2>Liste des Utilisateurs</h2>
+
+
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="container">
+        <h2>Marquer les absences</h2>
+
+       
+
+        <!-- Formulaire de sélection de classe -->
+        <form asp-action="MarquerAbsences" method="get">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="CodeClasse">Classe</label>
+                <select id="CodeClasse" name="codeClasse" class="form-control" required>
+                    <option value="">-- Sélectionnez une classe --</option>
+                    @foreach (var classe in ViewBag.Classes)
+                    {
+                        <option value="@classe.CodeClasse" @(ViewBag.SelectedClasse == classe.CodeClasse ? "selected" : "")>
+                            @classe.NomClasse
+                        </option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-info">Afficher les étudiants</button>
+            <a href="@Url.Action("ListeAbsences", "Etudiant")" class="btn btn-enseignant">Rechecher des abcenses</a>
+
+        </form>
+
+    </div>
+
+    <!-- Formulaire des absences -->
+    @if (ViewBag.Etudiants != null && ViewBag.Etudiants.Count > 0)
+    {
+
+            <form asp-action="MarquerAbsences" method="post">
+                @Html.AntiForgeryToken()
+
+                <!-- Champ hidden pour transmettre le CodeClasse -->
+
+                <h2>Liste des étudiants</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Absent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var etudiant in ViewBag.Etudiants)
+                    {
+                        <tr>
+                            <td>@etudiant.Nom</td>
+                            <td>@etudiant.Prenom</td>
+                            <td>
+                                <!-- Champ hidden pour gérer la case non cochée -->
+                                <input type="hidden" name="absences[@etudiant.CodeEtudiant]" value="false" />
+                                <input type="checkbox" name="absences[@etudiant.CodeEtudiant]" value="true" />
+                            </td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+                <button type="submit" class="btn-primary">Enregistrer les absences</button>
+
+            </form>
+    }
+    <script>
+        // Mettre à jour la valeur du champ hidden avec la sélection de CodeClasse
+        document.getElementById('CodeClasse').addEventListener('change', function () {
+            document.getElementById('HiddenCodeClasse').value = this.value;
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

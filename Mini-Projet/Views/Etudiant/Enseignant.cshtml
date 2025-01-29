@@ -1,0 +1,239 @@
+﻿@{
+    ViewData["Title"] = "Page Enseignant";
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Enseignant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Style général de la page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-image: url("https://www.campusfrance.org/sites/default/files/Fotolia_182044577_Subscription_Monthly_M_0.jpg");
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            height: 600px;
+            color: #fff;
+            padding-top: 170px;
+            text-align: center;
+            background-image: url("https://as2.ftcdn.net/v2/jpg/05/95/27/81/1000_F_595278130_pm019aWdqNojWHZsWiUcPi3sthitC1Gk.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+            header h1 {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            header p {
+                font-size: 1.5rem;
+                font-weight: 300;
+            }
+
+        /* Navbar */
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+
+        /* Container for page content */
+        .container {
+            height:500px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 40px 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            margin-top: 20px; height: 100vh;
+            width: 250px;
+            background-color: #2c3e50;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+            .sidebar a {
+                color: #ecf0f1;
+                text-decoration: none;
+                padding: 10px 15px;
+                display: block;
+                font-size: 18px;
+                
+            }
+
+                .sidebar a:hover {
+                    background-color: #34495e;
+                }
+
+        /* Style des cartes */
+        .card {
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            font-size: 20px;
+        }
+
+        /* Titre de la page */
+        h2 {
+            font-size: 28px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Style des boutons */
+        .btn-custom {
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background-color: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(41, 128, 185, 0.2);
+            }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-secondary:hover {
+                background-color: #7f8c8d;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(127, 140, 141, 0.2);
+            }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AppStudent ♥ </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Enseignant", "Etudiant")">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Etudiants</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ListeAbsents", "Etudiant")">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cogs"></i> <!-- Icône paramètres -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   
+
+    <!-- Page Content -->
+    <div class="container" style="margin-left: 270px;">
+        <h2>Bienvenue, Enseignant !</h2>
+
+        <!-- Boutons pour ajouter et chercher des absences -->
+        <div class="text-center">
+            <a href="@Url.Action("MarquerAbsences", "Etudiant")" class="btn btn-primary btn-custom">
+                Ajouter Absence
+            </a>
+            <a href="@Url.Action("ListeAbsences", "Etudiant")" class="btn btn-secondary btn-custom">
+                Chercher Absence
+            </a>
+        </div>
+
+        <!-- Cards pour gérer les cours, notes et résumés -->
+        <div class="row mt-4">
+            <!-- Ajouter un cours -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ajouter Cours</h5>
+                        <p class="card-text">Ajoutez un nouveau cours à votre emploi du temps.</p>
+                        <a href="#" class="btn btn-primary">Ajouter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajouter une fiche des notes -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ajouter Fiche des Notes</h5>
+                        <p class="card-text">Ajoutez une fiche des notes des étudiants.</p>
+                        <a href="#" class="btn btn-primary">Ajouter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajouter résumé de cours -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ajouter Résumé de Cours</h5>
+                        <p class="card-text">Ajoutez un résumé pour chaque cours donné.</p>
+                        <a href="#" class="btn btn-primary">Ajouter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

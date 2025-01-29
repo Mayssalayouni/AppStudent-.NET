@@ -1,0 +1,310 @@
+﻿@{
+    ViewData["Title"] = "Acceuil";
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Page d'Accueil</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            height: 600px;
+            color: #fff;
+            padding-top: 170px ;
+            text-align: center;
+            background-image: url("https://as2.ftcdn.net/v2/jpg/05/95/27/81/1000_F_595278130_pm019aWdqNojWHZsWiUcPi3sthitC1Gk.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+            header h1 {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            header p {
+                font-size: 1.5rem;
+                font-weight: 300;
+            }
+
+        /* Navbar */
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;}
+
+                    /* Conteneur des boutons */
+           .button-container{
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacement entre les boutons */
+        }
+
+        /* Style des boutons */
+        .btn {
+            padding: 10px 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Bouton pour Admin/Responsable */
+        .btn-admin {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+            .btn-admin:hover {
+                background-color: #218838;
+                transform: translateY(-3px); /* Effet de levée */
+            }
+
+        /* Bouton pour Enseignant */
+        .btn-enseignant {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+        }
+
+            .btn-enseignant:hover {
+                background-color: #e0a800;
+                transform: translateY(-3px); /* Effet de levée */
+            }
+
+        /* Style de l'alignement des boutons */
+        .btn + .btn {
+            margin-left: 10px;
+        }
+        /* Main content */
+        main {
+            margin-top: 50px;
+        }
+
+        .container {
+            width:100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        /* Style pour les cartes */
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            /* Effet au survol des cartes */
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Style pour le corps des cartes */
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Titre des cartes */
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        /* Texte des cartes */
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Style des colonnes */
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Colonnes responsives */
+        .col-md-4 {
+            flex: 0 0 32%;
+            max-width: 32%;
+        }
+
+        /* Style des bordures spécifiques aux cartes */
+        .card.border-primary {
+            border-left: 4px solid #007bff;
+        }
+
+        .card.border-success {
+            border-left: 4px solid #28a745;
+        }
+
+        .card.border-warning {
+            border-left: 4px solid #ffc107;
+        }
+
+        /* Espacement et marges */
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        /* Style du texte de contact (email, téléphone) */
+        .card-text strong {
+            color: #333;
+        }
+
+        /* Espacement entre les cartes */
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 100px;
+           
+        }
+
+        /* Responsive design without media queries */
+        .container {
+            padding: 0 15px;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AppStudent ♥ </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <!-- Section Admin avec icône paramètres -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ListeAbsents", "Etudiant")">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cogs"></i> <!-- Icône paramètres -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Ajouter le lien vers la bibliothèque Font Awesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <header>
+        <div>
+            <h1>Bienvenue sur AppStudent de Layouni Mayssa</h1>
+            <p>Veuillez choisir une option ci-dessous pour gérer les données</p>
+            <div class="button-container">
+                <a href="@Url.Action("Login", "Etudiant")" class="btn btn-admin">Connexion Admin ou Responsable</a>
+                <a href="@Url.Action("LoginENS", "Etudiant")" class="btn btn-enseignant">Connexion Enseignant</a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Carte 1: À propos de l'application -->
+                <div class="col-md-4 mb-3">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">À propos de l'application</h5>
+                            <p class="card-text">
+                                Cette application facilite la gestion des étudiants, enseignants, matières, et absences dans un environnement scolaire. Elle est conçue pour être intuitive, rapide et efficace, répondant aux besoins des administrateurs et du personnel éducatif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte 2: Contact -->
+                <div class="col-md-4 mb-3">
+                    <div class="card border-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Contact</h5>
+                            <p class="card-text">
+                                Pour toute assistance ou information, veuillez contacter l'équipe support via notre email : <strong>support@appscolaire.com</strong>, ou par téléphone au : <strong>+216 ** *** ***</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte 3: Autres fonctionnalités -->
+                <div class="col-md-4 mb-3">
+                    <div class="card border-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Autres fonctionnalités</h5>
+                            <p class="card-text">
+                                Explorez des fonctionnalités supplémentaires comme l'exportation de rapports, la gestion des inscriptions, et le suivi en temps réel des performances académiques. Ces outils sont conçus pour enrichir votre expérience utilisateur.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <div>
+            <p>&copy; 2024 - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+﻿@model List<Mini_Projet.Models.AbsenceParEtudiantViewModel>
+
+@{
+    Layout = ""; // Si vous avez un fichier de mise en page, sinon laissez-le vide
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Styles CSS pour la page -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.campusfrance.org/sites/default/files/Fotolia_182044577_Subscription_Monthly_M_0.jpg");
+            background-size: cover;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Prend toute la hauteur de la fenêtre */
+        }
+
+        .container-form {
+            background-color: rgba(255, 255, 255, 0.95); /* Blanc avec opacité de 95% */
+            padding: 10px;
+            margin-top: 30px;
+            padding-top: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            align-items: center;
+            align-content: center;
+            margin:20px;
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+            .navbar a {
+                color: white;
+                padding: 14px 20px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+                .navbar a:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+        /* Styles de l'App Bar */
+        .app-bar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            z-index: 1000;
+            transform: translateY(-100%);
+            animation: slideDown 0.5s forwards;
+        }
+
+        .app-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .app-bar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .app-bar-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+       
+        
+
+        h2 {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            color: dodgerblue;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .alert {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid gray;
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+    </head>
+<body>
+<!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AppStudent ♥ </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gestion des absences</a>
+                </li>
+            </ul>
+            <!-- Section Admin avec icône paramètres -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cogs"></i> <!-- Icône paramètres -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<!-- Conteneur pour le formulaire -->
+<div class="container-form">
+    <h2>Rechercher les absences</h2>
+
+    <form asp-action="ListeAbsences" method="get">
+        <div class="form-group">
+            <label for="dateDebut">Date de début</label>
+            <input type="date" id="dateDebut" name="dateDebut" value="@DateTime.Now.ToString("yyyy-MM-dd")" required class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="dateFin">Date de fin</label>
+            <input type="date" id="dateFin" name="dateFin" value="@DateTime.Now.ToString("yyyy-MM-dd")" required class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="classeId">Classe</label>
+            <select id="classeId" name="classeId" class="form-control">
+                <option value="">Toutes les classes</option>
+                @if (ViewBag.Classes != null)
+                {
+                    foreach (var classe in ViewBag.Classes as List<Mini_Projet.Models.Classe>)
+                    {
+                        <option value="@classe.CodeClasse">@classe.NomClasse</option>
+                    }
+                }
+                else
+                {
+                    <option disabled>Aucune classe disponible</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="nomEtudiant">Nom de l'étudiant</label>
+            <input type="text" id="nomEtudiant" name="nomEtudiant" placeholder="Nom de l'étudiant" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Afficher les absences</button>
+            <a href="@Url.Action("ListeAbsences")" class="btn btn-secondary">Réinitialiser</a>
+        </div>
+    </form>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            Aucune absence trouvée pour les critères sélectionnés.
+        </div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Classe</th>
+                <th>Nombre d'absences</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var absence in Model)
+            {
+                <tr>
+                    <td>@absence.NomEtudiant</td>
+                    <td>@absence.PrenomEtudiant</td>
+                    <td>@absence.NomClasse</td>
+                    <td>@absence.NombreAbsences</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Optionnel: Fonction pour gérer le bouton de menu (en animation, par exemple)
+        function toggleSidebar() {
+            alert("Menu cliqué");
+        }
+    </script>
+</body>
+
+

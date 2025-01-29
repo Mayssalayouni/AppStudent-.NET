@@ -1,0 +1,42 @@
+﻿@model Mini_Projet.Models.Etudiant
+@{
+    ViewData["Title"] = "Créer une Séance";
+}
+
+<h2>Créer une Séance</h2>
+
+<!-- Affichage des messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Formulaire de création -->
+<form method="post" asp-action="CreateSeance" asp-controller="Seance">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="NomSeance">Nom de la Séance</label>
+        <input type="text" id="NomSeance" name="NomSeance"  class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="HeureDebut">Heure de Début</label>
+        <input type="time" id="HeureDebut" name="HeureDebut" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="HeureFin">Heure de Fin</label>
+        <input type="time" id="HeureFin" name="HeureFin" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Créer la Séance</button>
+</form>
+

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Accès Refusé";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accès Refusé</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container-accessdenied {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h2 {
+            color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-accessdenied">
+        <h2>Accès Refusé</h2>
+        <p>Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+        <a href="@Url.Action("Login", "Account")" class="btn btn-primary">Se connecter</a>
+    </div>
+</body>
+</html>
