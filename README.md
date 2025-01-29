@@ -1,0 +1,15 @@
+![Acceuil](https://github.com/user-attachments/assets/7e3f665c-5939-4ffe-830f-be4c09a4f003)
+![Afficher-Liste-Absence-Par-Date-Admin](https://github.com/user-attachments/assets/281843e4-3fe2-4200-9a70-316b60d721df)
+![Page-Admin](https://github.com/user-attachments/assets/94aa71c1-c108-4516-8907-fee889447b04)
+![Page-ENS](https://github.com/user-attachments/assets/2013c257-0bc4-4595-8edb-e4ca4a0d91a8)
+
+![Afficher-Nbr-Absence-ETD-Par-Période](https://github.com/user-attachments/assets/850aad80-4826-4482-9ab9-f53b83e54e24)
+![AjouteMat](https://github.com/user-attachments/assets/e35cb1a8-a896-4042-87bb-571b93990d0a)
+![Ajouter-Absence](https://github.com/user-attachments/assets/958ef35a-2ba9-45ae-9a42-9a47a94ec280)
+![Ajouter-Enseg-Admin](https://github.com/user-attachments/assets/e1141246-285c-4d4c-8870-af68341b14e2)
+![Deconnexion](https://github.com/user-attachments/assets/2d6d4ef1-00dc-49c8-84ca-9e6c27f738eb)
+![ListeENS](https://github.com/user-attachments/assets/940f9404-1714-4d5d-b394-9bfe7a005235)
+![ListeMatiére](https://github.com/user-attachments/assets/4b248e46-25da-441d-97e1-3aa80da25c67)
+![loginadmin](https://github.com/user-attachments/assets/04b217b8-4465-46e5-bcca-ef7cd0be0655)
+![LoginResp](https://github.com/user-attachments/assets/dde89ac3-fbf9-48e2-ba5c-bf0502372727)
+
